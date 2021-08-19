@@ -1,6 +1,5 @@
 {
-  "License": "20201116",
-  "Target": "https://otago.ca/apps/dash/x/get_data.php",
+  "Target": "https://ashboarday.com/x/api.php?a=u&b=111&c=20201116",
   "Nodes": [
 	  { "NID": "918", "Scrape": "./external" }
 ,	  { "NID": "919", "Scrape": "./external/applications" }
