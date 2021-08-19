@@ -40,22 +40,23 @@ def getLatestDate(folder):
 
 #-----------------  MAIN   -----------------------------
 
+
 print("Python :: Running the Ashboarday Updater.")
 
 # Get our guidance file:
-if os.path.exists('dash/ashboarday.u.json'):
+print(os.getcwd())
+if os.path.exists('.dash/ashboarday.u.json'):
   
-  with open('dash/ashboarday.u.json') as f:
+  with open('.dash/ashboarday.u.json') as f:
     jsondata = json.load(f)
 
-  license = jsondata['License']
   dashapi = jsondata['Target']
   nodes = jsondata['Nodes']
   
   for node in nodes:
     result = getLatestDate(node['Scrape'])
     print("For Node "+node['NID']+" :: Latest date: "+result[0]+". File count: "+str(result[1])+". Folder size: "+str(result[2]))
-    dashreply = urllib.request.urlopen(dashapi+"?i=" + node["NID"] + "&d=" + result[0] + "&c=" + str(license) + "&s=" + str(result[2]) + "&f=" + str(result[1])).read()
+    dashreply = urllib.request.urlopen(dashapi+"?i=" + node["NID"] + "&t=" + result[0] + "&s=" + str(result[2]) + "&f=" + str(result[1])).read()
     print("Dashboard response: "+str(dashreply,'utf-8'))
   
   f.close
